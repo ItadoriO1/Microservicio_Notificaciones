@@ -26,7 +26,8 @@ public class Notificacion {
     private String titulo;
 
     @Column(name = "canal", nullable = false)
-    private String canal;
+    @Enumerated(EnumType.STRING)
+    private Canal canal;
 
     @Column(name = "mensaje", nullable = false)
     private String mensaje;

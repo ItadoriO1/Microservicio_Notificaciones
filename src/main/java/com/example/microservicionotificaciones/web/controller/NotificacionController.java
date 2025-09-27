@@ -2,6 +2,8 @@ package com.example.microservicionotificaciones.web.controller;
 
 import com.example.microservicionotificaciones.domain.dto.NotificacionDTO;
 import com.example.microservicionotificaciones.domain.service.NotificacionService;
+import com.example.microservicionotificaciones.persistence.serviceImpl.EmailService;
+import com.example.microservicionotificaciones.persistence.serviceImpl.SMSService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -14,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/notificaciones")
 @Tag(name = "Notificaciones", description = "API para la gestion de notificaciones")
@@ -21,6 +25,12 @@ public class NotificacionController {
 
     @Autowired
     private NotificacionService notificacionService;
+
+    @Autowired
+    private SMSService smsService;
+
+    @Autowired
+    private EmailService emailService;
 
     //Obtener todas las notificaciones
     @Operation(summary = "Obtener todas las notificaciones", description = "Retorna una lista de notificaciones")
@@ -55,7 +65,7 @@ public class NotificacionController {
             @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content)
     })
     @PostMapping("/save")
-    public  ResponseEntity<NotificacionDTO> saveNotificacion(@RequestBody @Parameter(description = "Datos de la notificacion") NotificacionDTO notificacion) {
+    public  ResponseEntity<NotificacionDTO> saveNotificacion(@RequestBody @Parameter(description = "Datos de la notificacion") NotificacionDTO notificacion) throws IOException, InterruptedException {
         NotificacionDTO saveNotificacion = notificacionService.save(notificacion);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveNotificacion);
     }

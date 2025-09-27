@@ -37,7 +37,7 @@ public class NotificacionRepositoryImpl implements NotificacionRepository {
     @Override
     public NotificacionDTO save(NotificacionDTO notificacionDTO) {
         Notificacion notificacion = notificacionMapper.toEntity(notificacionDTO);
-        if(existsById(notificacion.getId())){
+        if(notificacion.getId() != null && existsById(notificacion.getId())){
             throw new IllegalArgumentException("La notificacion ya existe");
         }
         Notificacion notificacionSaved = notificacionCrudRepository.save(notificacion);

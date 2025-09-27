@@ -1,7 +1,8 @@
 package com.example.microservicionotificaciones.domain.service;
 
 import com.example.microservicionotificaciones.domain.dto.NotificacionDTO;
-import java.util.Optional;
+
+import java.io.IOException;
 
 public interface NotificacionService {
 
@@ -9,7 +10,7 @@ public interface NotificacionService {
 
     NotificacionDTO findById(Long id);
 
-    NotificacionDTO save(NotificacionDTO notificacionDTO);
+    NotificacionDTO save(NotificacionDTO notificacionDTO) throws IOException, InterruptedException;
 
     void deleteById(Long id);
 
