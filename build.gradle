@@ -53,6 +53,9 @@ dependencies {
     //Implementacion de API para enviar correos
     implementation 'com.sendgrid:sendgrid-java:4.9.3'
 
+    //Implementacion de .env
+    implementation 'me.paulschwarz:spring-dotenv:4.0.0'
+
     // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
