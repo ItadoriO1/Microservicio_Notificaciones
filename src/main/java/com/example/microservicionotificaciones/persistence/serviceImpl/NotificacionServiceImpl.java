@@ -2,14 +2,12 @@ package com.example.microservicionotificaciones.persistence.serviceImpl;
 
 import com.example.microservicionotificaciones.domain.dto.NotificacionDTO;
 import com.example.microservicionotificaciones.domain.repository.NotificacionRepository;
-import com.example.microservicionotificaciones.domain.service.CanalFactory;
 import com.example.microservicionotificaciones.domain.service.NotificacionService;
 import com.example.microservicionotificaciones.exceptions.NotificacionNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @Service
 public class NotificacionServiceImpl implements NotificacionService {
@@ -18,7 +16,7 @@ public class NotificacionServiceImpl implements NotificacionService {
     private NotificacionRepository notificacionRepository;
 
     @Autowired
-    private CanalFactory canalFactory;
+    private EmailService emailService;
 
     @Override
     public Iterable<NotificacionDTO> findAll() {
@@ -31,8 +29,8 @@ public class NotificacionServiceImpl implements NotificacionService {
     }
 
     @Override
-    public NotificacionDTO save(NotificacionDTO notificacionDTO) throws IOException, InterruptedException {
-        canalFactory.getService(notificacionDTO.getCanal()).enviarNotificacion(notificacionDTO);
+    public NotificacionDTO save(NotificacionDTO notificacionDTO) {
+        emailService.enviarNotificacion(notificacionDTO);
        return notificacionRepository.save(notificacionDTO);
     }
 
@@ -52,6 +50,6 @@ public class NotificacionServiceImpl implements NotificacionService {
 
     @Override
     public Iterable<NotificacionDTO> findAllByUsuarioId(Long id) {
-        return notificacionRepository.findAllByPersonId(id);
+        return notificacionRepository.findAllByPersonId(String.valueOf(id));
     }
 }

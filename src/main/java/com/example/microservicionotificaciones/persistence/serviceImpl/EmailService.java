@@ -1,7 +1,6 @@
 package com.example.microservicionotificaciones.persistence.serviceImpl;
 
 import com.example.microservicionotificaciones.domain.dto.NotificacionDTO;
-import com.example.microservicionotificaciones.domain.service.CanalService;
 import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
@@ -13,7 +12,7 @@ import java.io.IOException;
 
 @Slf4j
 @Service("EMAIL")
-public class EmailService implements CanalService {
+public class EmailService {
 
     @Value("${sendgrid.api.key}")
     private String sendGridApiKey;
@@ -21,12 +20,12 @@ public class EmailService implements CanalService {
     @Value("${sendgrid.from.email}")
     private String fromEmail;
 
-    @Override
+
     public void enviarNotificacion(NotificacionDTO notificacion) {
         log.info("Enviando EMAIL a persona {}: {}", notificacion.getPersonId(), notificacion.getMensaje());
 
         Email from = new Email(fromEmail);
-        Email to = new Email("orozco.jose.7378@eam.edu.co");
+        Email to = new Email(notificacion.getEmail());
 
         Mail mail = new Mail();
         mail.setFrom(from);

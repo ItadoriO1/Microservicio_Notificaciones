@@ -20,14 +20,13 @@ public class Notificacion {
     private Long id;
 
     @Column(name = "person_id")
-    private Long personId;
+    private String personId;
+
+    @Column(name = "email_destino")
+    private String emailDestino;
 
     @Column(name = "titulo", nullable = false)
     private String titulo;
-
-    @Column(name = "canal", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Canal canal;
 
     @Column(name = "mensaje", nullable = false)
     private String mensaje;

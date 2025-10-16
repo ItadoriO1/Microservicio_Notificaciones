@@ -2,8 +2,6 @@ package com.example.microservicionotificaciones.web.controller;
 
 import com.example.microservicionotificaciones.domain.dto.NotificacionDTO;
 import com.example.microservicionotificaciones.domain.service.NotificacionService;
-import com.example.microservicionotificaciones.persistence.serviceImpl.EmailService;
-import com.example.microservicionotificaciones.persistence.serviceImpl.SMSService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,12 +23,6 @@ public class NotificacionController {
 
     @Autowired
     private NotificacionService notificacionService;
-
-    @Autowired
-    private SMSService smsService;
-
-    @Autowired
-    private EmailService emailService;
 
     //Obtener todas las notificaciones
     @Operation(summary = "Obtener todas las notificaciones", description = "Retorna una lista de notificaciones")

@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface NotificacionCrudRepository extends CrudRepository<Notificacion, Long> {
 
-    Iterable<Notificacion> findByPersonId(Long personId);
+    Iterable<Notificacion> findByPersonId(String personId);
 }

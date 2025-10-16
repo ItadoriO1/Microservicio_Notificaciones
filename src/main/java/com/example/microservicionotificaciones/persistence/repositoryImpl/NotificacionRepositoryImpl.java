@@ -64,8 +64,8 @@ public class NotificacionRepositoryImpl implements NotificacionRepository {
     }
 
     @Override
-    public Iterable<NotificacionDTO> findAllByPersonId(Long id) {
-        Iterable<Notificacion> notificaciones = notificacionCrudRepository.findByPersonId(id);
+    public Iterable<NotificacionDTO> findAllByPersonId(String id) {
+        Iterable<Notificacion> notificaciones = notificacionCrudRepository.findByPersonId(String.valueOf(Long.valueOf(id)));
         return ((List<Notificacion>) notificaciones).stream().map(notificacionMapper::toDTO)
                 .collect(Collectors.toList());
     }

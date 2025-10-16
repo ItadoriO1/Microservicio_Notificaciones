@@ -25,5 +25,5 @@ public interface NotificacionRepository {
     long count();
 
     //Consultar notificaciones por id de persona
-    Iterable<NotificacionDTO> findAllByPersonId(Long id);
+    Iterable<NotificacionDTO> findAllByPersonId(String id);
 }
