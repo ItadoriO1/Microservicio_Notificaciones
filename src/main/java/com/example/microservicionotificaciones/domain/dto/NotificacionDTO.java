@@ -16,7 +16,7 @@ public class NotificacionDTO {
     private String personId;
 
     @NotBlank(message = "El email de destiono no puede estar vacio")
-    private String email;
+    private String emailDestino;
 
     @NotBlank(message = "El titulo no puede estar vacio")
     private String titulo;

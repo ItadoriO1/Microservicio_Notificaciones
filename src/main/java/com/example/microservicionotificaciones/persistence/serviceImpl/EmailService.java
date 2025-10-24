@@ -25,7 +25,7 @@ public class EmailService {
         log.info("Enviando EMAIL a persona {}: {}", notificacion.getPersonId(), notificacion.getMensaje());
 
         Email from = new Email(fromEmail);
-        Email to = new Email(notificacion.getEmail());
+        Email to = new Email(notificacion.getEmailDestino());
 
         Mail mail = new Mail();
         mail.setFrom(from);
